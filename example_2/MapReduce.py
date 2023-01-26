@@ -9,14 +9,8 @@ class MRHotelMapReduce(MRJob):
             yield result
         
 
-    def reducer(self, key, values):
-        suma=0
-        suma2=0
-        for value in values:
-            suma2+=value
-            suma+=1
-        result = [key, suma2/suma]
-        yield result
-
+    def reducer(self, key, value):
+        ratinglist = list(value)
+        yield key, sum(ratinglist)/len(ratinglist)
 if __name__ == '__main__':
     MRHotelMapReduce.run()
