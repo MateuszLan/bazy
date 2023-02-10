@@ -1,8 +1,11 @@
 ssh sshuser@pac1a-ssh.azurehdinsight.net "mkdir -p /home/sshuser/langaj"
-scp -r  C:/Users/vdi-terminal/Downloads/bazy-main/example_2* sshuser@pac1a-ssh.azurehdinsight.net:/home/sshuser/langaj
+scp -r  C:/Users/vdi-terminal/Downloads/bazy-main/example_3* sshuser@pac1a-ssh.azurehdinsight.net:/home/sshuser/langaj
 ssh sshuser@pac1a-ssh.azurehdinsight.net
-python ./langaj/example_2/MapReduce2.py wasb:///user/ratings.csv -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar --hadoop-tmp-dir wasb:////tmp
+python ./langaj/example_2/MapReducee.py wasb:///user/ratings.csv -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar --hadoop-tmp-dir wasb:////tmp
 
-scp -r  C:/Users/vdi-terminal/Downloads/bazy-main/example_2/MapReduce2.py sshuser@pac1a-ssh.azurehdinsight.net:/home/sshuser/langaj/example_2
+scp -r  C:/Users/vdi-terminal/Downloads/bazy-main/example_3/MapReducee.pig sshuser@pac1a-ssh.azurehdinsight.net:/home/sshuser/langaj/example_3
 
+sudo pip install mrjob
 hdfs dfs -copyFromLocal /home/sshuser/langaj/example_2/movies.csv /user/movies.csv
+
+pig -x mapreduce ./langaj/example_3/MapReducee.pig

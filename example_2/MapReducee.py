@@ -5,7 +5,7 @@ class MRHotelMapReducee(MRJob):
     def mapper(self, _, line):
         (userId, movieId, rating, timestamp) = line.split(",")
         if(userId!="userId"):
-            with open("C:\\Users\\Mateusz\\PycharmProjects\\bazy\\example_2\\movies.csv", "r", encoding="utf-8") as movie_titles:
+            with open("C:\\Users\\vdi-terminal\\Downloads\\bazy-main\\example_2\\movies.csv", "r", encoding="utf-8") as movie_titles:
                 for title in movie_titles:
                     title_parts = title.strip().split(",")
                     if title_parts[0]!="movieId":
